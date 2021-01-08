@@ -28,6 +28,7 @@ function drawLines() {
 }
 drawLines();
 
+// function that draws an X with coordinates in array
 function drawX(arr) {
   ctx.beginPath();
   ctx.moveTo(arr[0], arr[1]);
@@ -36,6 +37,7 @@ function drawX(arr) {
   ctx.lineTo(arr[6], arr[7]);
   ctx.stroke();
 }
+// function that draws an O with coordinates in array
 function drawO(arr) {
   ctx.beginPath();
   ctx.arc(arr[0], arr[1], arr[2], arr[3], arr[4]);
@@ -55,6 +57,7 @@ let isWin = false;
 playerXhtml.innerHTML = playerX;
 playerOhtml.innerHTML = playerO;
 
+// function that checks if the player has won
 function checkWin(c, turnStr) {
   if (
      (c[0] === turnStr && c[1] === turnStr && c[2] === turnStr) 
@@ -79,6 +82,7 @@ function checkWin(c, turnStr) {
   }
 }
 
+// function that decides what player to turn
 function whatPlayer() {
   if (turn === 0) {
     whatPlayerHTML.innerHTML = 'X';
@@ -87,6 +91,7 @@ function whatPlayer() {
   }
 }
 
+// function that starts new round
 function newRound() {
   ctx.beginPath();
   ctx.stroke();
@@ -103,6 +108,7 @@ function newRound() {
   filledCells = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 }
 
+// function that starts over the game
 function deleteAll() {
   ctx.beginPath();
   ctx.stroke();
@@ -123,6 +129,7 @@ function deleteAll() {
   playerOhtml.innerHTML = playerO;
 }
 
+// Add event listeners on buttons
 newRoundHTML.addEventListener('click', newRound);
 deleteAllHTML.addEventListener('click', deleteAll);
 
@@ -130,6 +137,7 @@ deleteAllHTML.addEventListener('click', deleteAll);
 function game(e) {
   // First line
   if (e.offsetY < 200) {
+    //First square
     if (e.offsetX < 200) {
       if (!cells[0]) {
         if (turn === 0) {
@@ -152,6 +160,7 @@ function game(e) {
         whatPlayer();
       }
     }
+    // Second square
     else if ( e.offsetX < 400 ) {
       if (!cells[1]) {
         if (turn === 0) {
@@ -174,6 +183,7 @@ function game(e) {
         whatPlayer();
       }
     }
+    // Third square
     else if ( e.offsetX < 600 ) {
       if (!cells[2]) {
         if (turn === 0) {
@@ -197,8 +207,9 @@ function game(e) {
       }
     }
   }
-  
+  // Second line
   else if (e.offsetY < 400) {
+    // Fourth square
     if (e.offsetX < 200) {
       if (!cells[3]) {
         if (turn === 0) {
@@ -221,6 +232,7 @@ function game(e) {
         whatPlayer();
       }
     }
+    // Fifth square
     else if ( e.offsetX < 400 ) {
       if (!cells[4]) {
         if ( turn === 0) {
@@ -243,6 +255,7 @@ function game(e) {
         whatPlayer();
       }
     }
+    // Sixth square
     else if ( e.offsetX < 600 ) {
       if (!cells[5]) {
         if ( turn === 0 ) {
@@ -266,8 +279,9 @@ function game(e) {
       }
     }
   }
-  
+  // Third line
   else if (e.offsetY < 600) {
+    // Seventh square
     if (e.offsetX < 200) {
       if (!cells[6]) {
         if ( turn === 0 ) {
@@ -290,6 +304,7 @@ function game(e) {
         whatPlayer();
       }
     }
+    // Eighth square
     else if ( e.offsetX < 400 ) {
       if (!cells[7]) {
         if ( turn === 0 ) {
@@ -312,6 +327,7 @@ function game(e) {
         whatPlayer();
       }
     }
+    // Ninth square
     else if ( e.offsetX < 600 ) {
       if (!cells[8]) {
         if ( turn === 0 ) {
