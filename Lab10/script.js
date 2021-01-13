@@ -69,7 +69,6 @@ function checkWin(c, turnStr) {
   || (c[1] === turnStr && c[4] === turnStr && c[7] === turnStr)
   || (c[2] === turnStr && c[5] === turnStr && c[8] === turnStr) 
   ) {
-    alert(`Игрок ${turnStr} выиграл. Поздравляем.`);
     canvas.removeEventListener('click', game);
     if (turnStr === 'x') {
       playerX++;
@@ -79,6 +78,17 @@ function checkWin(c, turnStr) {
       playerOhtml.innerHTML = playerO;
     }
     isWin = true;
+    setTimeout(() => {
+      alert(`Игрок ${turnStr} выиграл. Поздравляем.`);
+    }, 100);
+    
+  }
+  if ( c[0] && c[1] && c[2] && c[3] && c[4] && c[5] && c[6] && c[7] && c[8] ) {
+    canvas.removeEventListener('click', game);
+    isWin = true;
+    setTimeout(() => {
+      alert(`Ничья.`);
+    }, 100);
   }
 }
 

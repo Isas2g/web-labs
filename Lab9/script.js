@@ -16,7 +16,12 @@ console.log(`Студент ${student.first_name} ${student.last_name} учит�
 console.log('Задача 2');
 // Task 2
 function arrayCut(array) {
-  for (let i = 0; i < array.length; i++) {
+  let arrayLen = array.length;
+  for (let i = 0; i < arrayLen; i++) {
+    if (array.length === 1) {
+      console.log(array[0].toString());
+      return;
+    }
     let str = `${array[array.length - 1]} осталось `;
     array.pop();
     str += array;
