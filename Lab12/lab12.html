@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Laba12</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    #app {
+      font-family: Montserrat, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 60px;
+      max-width: 550px;
+      margin: auto;
+    }
+    .form-fields {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        
+    }
+    label {
+      margin-bottom: 10px;
+    }
+    .names {
+        max-width: 250px;
+        text-align: left;
+        margin: 40px auto;
+    }
+    .add-btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 140px;
+        height: 30px;
+        border: 2px solid cornflowerblue;
+        color: cornflowerblue;
+        border-radius: 20px;
+        cursor: pointer;
+        user-select: none;
+    }
+    .warn-message {
+        color: red;
+    }
+    input {
+        width: 140px;
+        height: 30px;
+        border: 2px solid rgba(0,0,0, 0.6);
+        color: cornflowerblue;
+        border-radius: 20px;
+        padding-left: 20px;
+    }
+    input:focus,
+    input:active {
+      border: 2px solid cornflowerblue;
+      outline: none;
+    }
+    </style>
+    
+</head>
+<body>
+  
+  <div id="app">
+    <div>
+      <h1 align="center">{{ msg }}</h1>
+      
+      <p>Работа показывает некоторые функции Vue.</p>
+    </div>
+    
+    <div>
+      <form>
+        <div class="form-fields">
+          <label for="first-name">Имя</label>
+          <input v-model="firstName" id="first-name" name="first-name" type="text" placeholder="Имя">
+        </div>
+        <div class="form-fields">
+          <label for="last-name">Фамилия</label>
+          <input v-model="lastName" id="last-name" name="last-name" type="text" placeholder="Фамилия">
+        </div>
+        <p>Количество записанных знаков: {{ counter }}</p>
+        <a class="add-btn" v-on:click="add()">Записать</a>
+        <p class="warn-message" v-if="warn">Введите данные перед записью!</p>
+      </form>
+      
+      <p>Список</p>
+      <ol class="names">
+        <li v-for="name in names" :key="name">{{ name }}</li>
+      </ol>
+      <p v-if="!names.length">Список пуст</p>
+    </div>
+  </div>
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: {
+    // return {
+      msg: "Лабораторная работа",
+      names: [],
+      counter: 0,
+      firstName: '',
+      lastName: '',
+      warn: false,
+      add: function() {
+        if (this.firstName.trim() === '' || this.lastName.trim() === '') {
+          this.warn = true;
+          return;
+        }
+        this.warn = false;
+        let fullName = this.firstName + ' ' + this.lastName;
+        this.counter += this.firstName.length + this.lastName.length;
+        this.names.push(fullName);
+        this.firstName = '';
+        this.lastName = '';
+      // }
+    }
+  }
+});
+</script>
+</body>
+</html>
